@@ -86,10 +86,10 @@
                   <Badge>Excel</Badge><Badge>SQL</Badge><Badge>Python</Badge><Badge>Power BI</Badge><Badge>Tableau</Badge><Badge>Snowflake</Badge>
                 </div>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">LinkedIn</a>
                   <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">GitHub</a>
                   <a href={PROFILE.links.kaggle} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">Kaggle</a>
-                  <a href={PROFILE.links.resume} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">Download Resume</a>
+                  <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="text-sm underline">LinkedIn</a>
+                  <a href={PROFILE.links.resume} target="_blank" rel="noopener" className="text-sm underline">Download Resume</a>
                 </div>
               </div>
               <div className="md:col-span-5">
@@ -145,8 +145,9 @@
               <h3 className="font-medium">Get in touch</h3>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <a href={"mailto:" + PROFILE.email} className="rounded-xl border px-4 py-2 hover:bg-gray-50">Email</a>
-                <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">LinkedIn</a>
+                <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="text-sm underline">LinkedIn</a>
                 <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">GitHub</a>
+                <a href={PROFILE.links.resume} target="_blank" rel="noopener" className="text-sm underline">Download Resume</a>
               </div>
             </Card>
           </Section>
