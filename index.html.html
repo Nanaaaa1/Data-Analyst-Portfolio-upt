@@ -26,7 +26,7 @@
         linkedin: "https://www.linkedin.com/in/nanaaaa1/",
         github: "https://github.com/Nanaaaa1/Data-Analyst-Portfolio",
         kaggle: "https://kaggle.com/",
-        resume: "files/NANA_ADU-ABANKRO_Data_Analyst.pdf"
+        resume: "https://nanaaaa1.github.io/Data-Analyst-Portfolio/files/NANA_ADU-ABANKRO_Data_Analyst.pdf"
       },
       tableauViewsUrl:
         "https://public.tableau.com/views/Superstore_Dashboard_Nana/SuperstoreDashboard?:showVizHome=no&:embed=y&:tabs=no&:toolbar=yes",
@@ -47,13 +47,8 @@
     );
 
     const Section = ({ id, title, children }) => (
-      <section
-        id={id}
-        className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12"
-      >
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">
-          {title}
-        </h2>
+      <section id={id} className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12">
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">{title}</h2>
         {children}
       </section>
     );
@@ -65,14 +60,10 @@
           <header className="sticky top-0 z-50 bg-white/70 backdrop-blur border-b">
             <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-2xl bg-gray-900 text-white grid place-items-center font-semibold">
-                  NA
-                </div>
+                <div className="h-9 w-9 rounded-2xl bg-gray-900 text-white grid place-items-center font-semibold">NA</div>
                 <div>
                   <p className="font-medium leading-tight">{PROFILE.name}</p>
-                  <p className="text-xs text-gray-500 -mt-0.5">
-                    {PROFILE.title}
-                  </p>
+                  <p className="text-xs text-gray-500 -mt-0.5">{PROFILE.title}</p>
                 </div>
               </div>
               <nav className="hidden md:flex items-center gap-6 text-sm">
@@ -89,12 +80,8 @@
           <section id="about" className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 pt-12 pb-8">
             <div className="grid md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-7">
-                <h1 className="text-3xl md:text-5xl font-semibold tracking-tight">
-                  {PROFILE.title}
-                </h1>
-                <p className="mt-4 text-gray-600 md:text-lg max-w-2xl">
-                  {PROFILE.summary}
-                </p>
+                <h1 className="text-3xl md:text-5xl font-semibold tracking-tight">{PROFILE.title}</h1>
+                <p className="mt-4 text-gray-600 md:text-lg max-w-2xl">{PROFILE.summary}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Badge>Excel</Badge><Badge>SQL</Badge><Badge>Python</Badge><Badge>Power BI</Badge><Badge>Tableau</Badge><Badge>Snowflake</Badge>
                 </div>
@@ -124,30 +111,22 @@
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
                 <h3 className="font-medium">Python Data Cleaning & Analysis</h3>
-                <p className="text-sm mt-2">
-                  Advanced data cleaning, transformation, and visualization using Pandas, Matplotlib, and Seaborn.
-                </p>
+                <p className="text-sm mt-2">Advanced data cleaning, transformation, and visualization using Pandas, Matplotlib, and Seaborn.</p>
                 <a href="https://github.com/Nanaaaa1/python-data-cleaning-project" target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View Project</a>
               </Card>
               <Card>
                 <h3 className="font-medium">Power BI Sales Dashboard</h3>
-                <p className="text-sm mt-2">
-                  Interactive dashboard tracking sales performance, trends, and KPIs across regions.
-                </p>
+                <p className="text-sm mt-2">Interactive dashboard tracking sales performance, trends, and KPIs across regions.</p>
                 <a href="https://app.powerbi.com/" target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View Dashboard</a>
               </Card>
               <Card>
-                <h3 className="font-medium">SQL Case Study — Customer Segmentation</h3>
-                <p className="text-sm mt-2">
-                  SQL queries for segmenting customer data to uncover insights on behavior and lifetime value.
-                </p>
+                <h3 className="font-medium">SQL Customer Segmentation</h3>
+                <p className="text-sm mt-2">SQL queries for segmenting customer data to uncover insights on behavior and lifetime value.</p>
                 <a href="https://github.com/Nanaaaa1/sql-customer-segmentation" target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View SQL Scripts</a>
               </Card>
               <Card>
                 <h3 className="font-medium">Tableau — Superstore Dashboard</h3>
-                <p className="text-sm mt-2">
-                  Dynamic Tableau dashboard for visualizing Superstore sales trends and KPIs.
-                </p>
+                <p className="text-sm mt-2">Dynamic Tableau dashboard for visualizing Superstore sales trends and KPIs.</p>
                 <a href={PROFILE.tableauOpenUrl} target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View on Tableau Public</a>
               </Card>
             </div>
