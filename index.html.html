@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Data Analyst Portfolio — Nana Adu-Abankro</title>
-  <meta name="description" content="Dashboards in Tableau & Power BI, SQL & Python projects, case studies, and downloadable artifacts." />
+  <meta name="description" content="Data Analyst portfolio showcasing Python, SQL, Tableau & Power BI projects, case studies, and downloadable artifacts." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
@@ -17,15 +17,15 @@
     const PROFILE = {
       name: "Nana Adu-Abankro",
       title: "Data Analyst Portfolio and Insights",
-      location: "Main St, TX 77002",
-      summary: "Data analyst with 5+ years' experience delivering impactful analytics in cybersecurity, energy, retail, and financial services. Skilled in data cleaning, visualization, dashboard creation, and predictive modeling using Python, SQL, Tableau, Power BI, and Excel.",
+      location: "Main Street, Rosharon, TX",
+      summary: "Data analyst with 5+ years' experience delivering impactful analytics in cybersecurity, energy, retail, and financial services. Skilled in Python, SQL, Tableau, Power BI, Excel, and Snowflake with expertise in data cleaning, visualization, dashboard creation, and predictive modeling.",
       email: "nanaaduabankro@gmail.com",
       phone: "(908) 425-2060",
       links: {
         linkedin: "https://www.linkedin.com/in/nanaaaa1/",
-        github: "https://github.com/Nanaaaa1/Data-Analyst-Portfolio",
+        github: "https://github.com/Nanaaaa1/Data-Analyst-Portfolio-upt",
         kaggle: "https://kaggle.com/",
-        resume: "files/NANA%20ADU-ABANKRO_Data%20Analyst%20(1).pdf",
+        resume: "NANA_ADU-ABANKRO_Data_Analyst.pdf", // Place this PDF in your repo root
       },
       tableauViewsUrl: "https://public.tableau.com/views/Superstore_Dashboard_Nana/SuperstoreDashboard?:showVizHome=no&:embed=y&:tabs=no&:toolbar=yes",
       tableauOpenUrl: "https://public.tableau.com/views/Superstore_Dashboard_Nana/SuperstoreDashboard?:showVizHome=no",
@@ -51,6 +51,7 @@
     function Portfolio() {
       return (
         <div>
+          {/* Header */}
           <header className="sticky top-0 z-50 bg-white/70 backdrop-blur border-b">
             <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -70,19 +71,20 @@
             </div>
           </header>
 
-          <section className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 pt-12 pb-8" id="about">
+          {/* About Section */}
+          <section id="about" className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 pt-12 pb-8">
             <div className="grid md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-7">
                 <h1 className="text-3xl md:text-5xl font-semibold tracking-tight">{PROFILE.title}</h1>
                 <p className="mt-4 text-gray-600 md:text-lg max-w-2xl">{PROFILE.summary}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Badge>Excel</Badge><Badge>SQL</Badge><Badge>Python</Badge><Badge>Power BI</Badge><Badge>Tableau</Badge><Badge>Data Cleaning</Badge><Badge>Documentation</Badge>
+                  <Badge>Excel</Badge><Badge>SQL</Badge><Badge>Python</Badge><Badge>Power BI</Badge><Badge>Tableau</Badge><Badge>Snowflake</Badge>
                 </div>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <a href={PROFILE.links.linkedin} className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">LinkedIn</a>
-                  <a href={PROFILE.links.github} className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">GitHub</a>
-                  <a href={PROFILE.links.kaggle} className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">Kaggle</a>
-                  <a href={PROFILE.links.resume} className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50" target="_blank" rel="noopener">Download Resume</a>
+                  <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">LinkedIn</a>
+                  <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">GitHub</a>
+                  <a href={PROFILE.links.kaggle} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">Kaggle</a>
+                  <a href={PROFILE.links.resume} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">Download Resume</a>
                 </div>
               </div>
               <div className="md:col-span-5">
@@ -99,6 +101,23 @@
             </div>
           </section>
 
+          {/* Projects Section */}
+          <Section id="projects" title="Featured Projects">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <h3 className="font-medium">Python Data Cleaning & Analysis</h3>
+                <p className="text-sm mt-2">A Python project demonstrating advanced data cleaning, transformation, and visualization using Pandas, Matplotlib, and Seaborn.</p>
+                <a href="https://github.com/Nanaaaa1/python-data-cleaning-project" target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View Project</a>
+              </Card>
+              <Card>
+                <h3 className="font-medium">Power BI Sales Dashboard</h3>
+                <p className="text-sm mt-2">Interactive dashboard tracking sales performance, trends, and KPIs across regions.</p>
+                <a href="https://app.powerbi.com/" target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View Dashboard</a>
+              </Card>
+            </div>
+          </Section>
+
+          {/* Tableau Showcase */}
           <Section id="tableau" title="Tableau Showcase">
             <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden border">
               <iframe title="Tableau Visualization" src={PROFILE.tableauViewsUrl} className="w-full h-full" allowFullScreen />
@@ -106,19 +125,21 @@
             <p className="mt-3 text-xs text-gray-500">Fallback: <a className="underline" href={PROFILE.tableauOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.</p>
           </Section>
 
+          {/* Contact */}
           <Section id="contact" title="Contact & Links">
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
                 <h3 className="font-medium">Get in touch</h3>
                 <div className="mt-4 flex flex-wrap gap-3 text-sm">
                   <a href={"mailto:" + PROFILE.email} className="rounded-xl border px-4 py-2 hover:bg-gray-50">Email</a>
-                  <a href={PROFILE.links.linkedin} className="rounded-xl border px-4 py-2 hover:bg-gray-50">LinkedIn</a>
-                  <a href={PROFILE.links.github} className="rounded-xl border px-4 py-2 hover:bg-gray-50">GitHub</a>
+                  <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">LinkedIn</a>
+                  <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">GitHub</a>
                 </div>
               </Card>
             </div>
           </Section>
 
+          {/* Footer */}
           <footer className="pb-12 text-center text-xs text-gray-500">© {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</footer>
         </div>
       );
