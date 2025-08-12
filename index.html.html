@@ -33,10 +33,10 @@
       email: "nanaaduabankro@gmail.com",
       phone: "(908) 425-2060",
       links: {
-        linkedin: "www.linkedin.com/in/nana-adu-abankro-a0a698174",
+        linkedin: "https://www.linkedin.com/in/nana-adu-abankro-a0a698174",
         github: "https://github.com/Nanaaaa1/Data-Analyst-Portfolio",
         kaggle: "https://kaggle.com/",
-        resume: "https://docs.google.com/document/d/1PpzxX2Z-5w8t33jj78QQGxUtxMwpfM4D/edit?usp=sharing&ouid=109009845564934818562&rtpof=true&sd=true"
+        resume: RESUME_URL
       },
       tableauViewsUrl:
         "https://public.tableau.com/views/Superstore_Dashboard_Nana/SuperstoreDashboard?:showVizHome=no&:embed=y&:tabs=no&:toolbar=yes",
@@ -73,7 +73,7 @@
       </div>
     );
 
-    // Rich project cards with tags + bullet highlights (from your earlier file)
+    // Rich project cards with tags + bullet highlights
     const PROJECTS = [
       {
         title: "Superstore Sales Performance (Tableau)",
@@ -182,7 +182,7 @@
             </div>
           </section>
 
-          {/* Skills & Tooling (from the previous file) */}
+          {/* Skills & Tooling */}
           <Section id="skills" title="Skills & Tooling">
             <div className="grid md:grid-cols-3 gap-6">
               <Card>
@@ -212,7 +212,7 @@
             </div>
           </Section>
 
-          {/* Projects (rich cards from the previous file) */}
+          {/* Projects */}
           <Section id="projects" title="Featured Projects">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {PROJECTS.map(p => (
@@ -282,4 +282,92 @@
           <Section id="python-segmentation" title="Python Project — Customer Segmentation (RFM + K-Means)">
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
-                <h3 className="font-medium">Overview
+                <h3 className="font-medium">Overview</h3>
+                <p className="mt-2 text-sm text-gray-700">
+                  This project engineers RFM (Recency, Frequency, Monetary) features from order data and applies K‑Means to discover customer segments.
+                  Outputs include segment profiles and recommendations for targeted campaigns.
+                </p>
+                <ul className="mt-3 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>Feature engineering: Recency (days), Frequency (orders), Monetary (sales)</li>
+                  <li>Preprocessing: scaling, elbow + silhouette to choose K</li>
+                  <li>Deliverables: Segment profiles, retention actions</li>
+                </ul>
+              </Card>
+              <Card>
+                <h3 className="font-medium">Sample Notebook Snippet</h3>
+                <pre className="text-xs whitespace-pre-wrap break-words">{`import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+rfm = orders.groupby('Customer ID').agg(
+    Recency=('Order Date', lambda s: (orders['Order Date'].max() - s.max()).days),
+    Frequency=('Order ID', 'nunique'),
+    Monetary=('Sales', 'sum')
+).reset_index()
+
+X = StandardScaler().fit_transform(rfm[['Recency','Frequency','Monetary']])
+K = 4
+kmeans = KMeans(n_clusters=K, n_init='auto', random_state=42)
+rfm['Segment'] = kmeans.fit_predict(X)`}</pre>
+                <p className="mt-2 text-sm text-gray-700">
+                  Host the full notebook on GitHub and I’ll link it here.
+                </p>
+              </Card>
+            </div>
+          </Section>
+
+          {/* SQL Snippets */}
+          <Section id="sql-snippets" title="SQL Snippets">
+            <Card>
+              <pre className="text-sm whitespace-pre-wrap break-words">{`WITH churn_cohorts AS (
+  SELECT customer_id,
+         MIN(DATE_TRUNC('month', signup_date)) AS cohort_month,
+         DATE_TRUNC('month', activity_date) AS activity_month,
+         COUNT(*) AS interactions
+  FROM events
+  GROUP BY 1,3
+)
+SELECT cohort_month,
+       activity_month,
+       COUNT(DISTINCT customer_id) AS active_customers
+FROM churn_cohorts
+GROUP BY 1,2
+ORDER BY 1,2;`}</pre>
+            </Card>
+          </Section>
+
+          {/* Contact */}
+          <Section id="contact" title="Contact & Links">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <h3 className="font-medium">Get in touch</h3>
+                <p className="mt-2 text-sm text-gray-700">
+                  I’m open to remote or hybrid roles focused on reporting, dashboarding, and process improvement.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                  <a href={"mailto:" + PROFILE.email} className="rounded-xl border px-4 py-2 hover:bg-gray-50">Email</a>
+                  <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">LinkedIn</a>
+                  <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">GitHub</a>
+                </div>
+              </Card>
+              <Card>
+                <h3 className="font-medium">How this portfolio is built</h3>
+                <ul className="mt-2 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>Single-file HTML with React + Tailwind via CDNs</li>
+                  <li>Drop-in Tableau embed via share link</li>
+                  <li>Easy to host free on GitHub Pages, Netlify, or Vercel</li>
+                </ul>
+              </Card>
+            </div>
+          </Section>
+
+          <footer className="pb-12 text-center text-xs text-gray-500">© {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Portfolio />);
+  </script>
+</body>
+</html>
