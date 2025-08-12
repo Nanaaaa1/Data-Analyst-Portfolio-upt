@@ -14,6 +14,16 @@
   <div id="root"></div>
 
   <script type="text/babel">
+    // Build a Pages-safe absolute link for your resume no matter the repo name
+    const RESUME_URL = (() => {
+      try {
+        const base = window.location.href.replace(/index\.html$/, "");
+        return new URL("files/NANA_ADU-ABANKRO_Data_Analyst.pdf", base).href;
+      } catch (e) {
+        return "files/NANA_ADU-ABANKRO_Data_Analyst.pdf";
+      }
+    })();
+
     const PROFILE = {
       name: "Nana Adu-Abankro",
       title: "Data Analyst Portfolio and Insights",
@@ -40,6 +50,10 @@
       </span>
     );
 
+    const Chip = ({ children }) => (
+      <span className="text-xs rounded-lg bg-gray-100 border px-2 py-0.5">{children}</span>
+    );
+
     const Card = ({ children }) => (
       <div className="rounded-2xl border shadow-sm p-5 hover:shadow-md transition-shadow bg-white/70 backdrop-blur">
         {children}
@@ -52,6 +66,68 @@
         {children}
       </section>
     );
+
+    const TableauEmbed = ({ src }) => (
+      <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden border">
+        <iframe title="Tableau Visualization" src={src} className="w-full h-full" allowFullScreen />
+      </div>
+    );
+
+    // Rich project cards with tags + bullet highlights (from your earlier file)
+    const PROJECTS = [
+      {
+        title: "Superstore Sales Performance (Tableau)",
+        period: "2025",
+        tagline:
+          "Corporate, clean dashboard with filters for Date, Region, and Category. KPIs for Sales, Profit, Orders; map and top-10 analysis.",
+        stack: ["Tableau", "Data Modeling", "UX"],
+        highlights: [
+          "Built KPI cards with QoQ deltas and spark-lines",
+          "Added interactive filters and actions for drilldowns",
+          "Documented dashboard purpose and usage tips"
+        ],
+        cta: { label: "View Live Dashboard", href: "#tableau" }
+      },
+      {
+        title: "Customer Segmentation (Python)",
+        period: "2025",
+        tagline:
+          "RFM scoring + k-means clustering to identify high-value segments; cohort profiles and recommended actions.",
+        stack: ["Python", "pandas", "scikit-learn", "matplotlib"],
+        highlights: [
+          "Engineered RFM features and standardized inputs",
+          "Selected K via elbow and silhouette methods",
+          "Segment profiles with purchase and margin patterns"
+        ],
+        cta: { label: "View Notebook (PDF)", href: "#python-segmentation" }
+      },
+      {
+        title: "Customer Churn Analysis (SQL + Excel)",
+        period: "2025",
+        tagline:
+          "Segmented at-risk subscribers using cohort retention and interaction features.",
+        stack: ["PostgreSQL", "CTEs", "Window Functions", "Excel"],
+        highlights: [
+          "Cohort and LTV calculations via SQL window functions",
+          "Exported feature tables for Excel scenario modeling",
+          "Prioritized save-offers based on churn risk"
+        ],
+        cta: { label: "See SQL Snippets", href: "#sql-snippets" }
+      },
+      {
+        title: "Contact Center KPI Dashboard (Power BI)",
+        period: "2025",
+        tagline:
+          "SLA, AHT, CSAT, and productivity metrics with queue and agent drill-through.",
+        stack: ["Power BI", "DAX", "Power Query"],
+        highlights: [
+          "Semantic model with reusable measures",
+          "Agent-level drilldowns for targeted coaching",
+          "SLA watchlist for staffing decisions"
+        ],
+        cta: { label: "Case Study", href: "#contact-center-case" }
+      }
+    ];
 
     function Portfolio() {
       return (
@@ -76,7 +152,7 @@
             </div>
           </header>
 
-          {/* About Section */}
+          {/* About */}
           <section id="about" className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 pt-12 pb-8">
             <div className="grid md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-7">
@@ -85,11 +161,11 @@
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Badge>Excel</Badge><Badge>SQL</Badge><Badge>Python</Badge><Badge>Power BI</Badge><Badge>Tableau</Badge><Badge>Snowflake</Badge>
                 </div>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">GitHub</a>
-                  <a href={PROFILE.links.kaggle} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 text-sm hover:bg-gray-50">Kaggle</a>
-                  <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="text-sm underline">LinkedIn</a>
-                  <a href={PROFILE.links.resume} target="_blank" rel="noopener" className="text-sm underline">Download Resume</a>
+                <div className="mt-6 flex flex-wrap gap-3 text-sm">
+                  <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">GitHub</a>
+                  <a href={PROFILE.links.kaggle} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">Kaggle</a>
+                  <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="underline">LinkedIn</a>
+                  <a href={PROFILE.links.resume} target="_blank" rel="noopener" className="underline">Download Resume</a>
                 </div>
               </div>
               <div className="md:col-span-5">
@@ -106,61 +182,104 @@
             </div>
           </section>
 
-          {/* Projects Section */}
+          {/* Skills & Tooling (from the previous file) */}
+          <Section id="skills" title="Skills & Tooling">
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card>
+                <h3 className="font-medium">Data Prep & Modeling</h3>
+                <ul className="mt-3 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>Excel (Power Query, PivotTables, advanced formulas)</li>
+                  <li>SQL (joins, CTEs, window functions, data quality checks)</li>
+                  <li>Python (pandas, NumPy, data validation)</li>
+                </ul>
+              </Card>
+              <Card>
+                <h3 className="font-medium">Visualization & Reporting</h3>
+                <ul className="mt-3 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>Power BI (DAX, measures, drill-through)</li>
+                  <li>Tableau (parameters, actions, level of detail)</li>
+                  <li>Matplotlib for quick EDA visuals</li>
+                </ul>
+              </Card>
+              <Card>
+                <h3 className="font-medium">Domains & Impact</h3>
+                <ul className="mt-3 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>Contact center KPIs (AHT, ASA, FCR, CSAT, SLA)</li>
+                  <li>Customer experience & churn insights</li>
+                  <li>Process improvement & SOPs</li>
+                </ul>
+              </Card>
+            </div>
+          </Section>
+
+          {/* Projects (rich cards from the previous file) */}
           <Section id="projects" title="Featured Projects">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {PROJECTS.map(p => (
+                <Card key={p.title}>
+                  <div className="text-xs text-gray-500">{p.period}</div>
+                  <h3 className="mt-1 text-lg font-semibold">{p.title}</h3>
+                  <p className="mt-2 text-sm text-gray-700">{p.tagline}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {p.stack.map(s => <Chip key={s}>{s}</Chip>)}
+                  </div>
+                  <ul className="mt-3 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                    {p.highlights.map(h => <li key={h}>{h}</li>)}
+                  </ul>
+                  <a href={p.cta.href} className="inline-block mt-4 text-sm underline">{p.cta.label}</a>
+                </Card>
+              ))}
+            </div>
+          </Section>
+
+          {/* Tableau */}
+          <Section id="tableau" title="Tableau Showcase">
+            <p className="text-gray-600 mb-4">Embedded via Tableau Public. If it’s blocked, use the fallback link below.</p>
+            <TableauEmbed src={PROFILE.tableauViewsUrl} />
+            <p className="mt-3 text-xs text-gray-500">
+              Fallback: <a className="underline" href={PROFILE.tableauOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.
+            </p>
+          </Section>
+
+          {/* Case Study (for the 'Case Study' CTA) */}
+          <Section id="contact-center-case" title="Case Study: Contact Center KPI Dashboard">
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
-                <h3 className="font-medium">Python Data Cleaning & Analysis</h3>
-                <p className="text-sm mt-2">Advanced data cleaning, transformation, and visualization using Pandas, Matplotlib, and Seaborn.</p>
-                <a href="https://github.com/Nanaaaa1/python-data-cleaning-project" target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View Project</a>
+                <h3 className="font-medium">Problem</h3>
+                <p className="mt-2 text-sm text-gray-700">
+                  Leadership lacked a unified view of SLA, wait times, and agent performance. Reports were siloed, delaying weekly decisions.
+                </p>
               </Card>
               <Card>
-                <h3 className="font-medium">Power BI Sales Dashboard</h3>
-                <p className="text-sm mt-2">Interactive dashboard tracking sales performance, trends, and KPIs across regions.</p>
-                <a href="https://app.powerbi.com/" target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View Dashboard</a>
+                <h3 className="font-medium">Approach</h3>
+                <ul className="mt-2 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>Ingested daily call logs and queue data via Power Query</li>
+                  <li>Built semantic model with DAX measures for KPIs</li>
+                  <li>Designed drill-through from org → queue → agent</li>
+                  <li>Annotated insights and defined refresh schedule</li>
+                </ul>
               </Card>
               <Card>
-                <h3 className="font-medium">SQL Customer Segmentation</h3>
-                <p className="text-sm mt-2">SQL queries for segmenting customer data to uncover insights on behavior and lifetime value.</p>
-                <a href="https://github.com/Nanaaaa1/sql-customer-segmentation" target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View SQL Scripts</a>
+                <h3 className="font-medium">Impact</h3>
+                <ul className="mt-2 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>Faster staffing decisions with real-time SLA tracking</li>
+                  <li>Targeted coaching using agent-level AHT & FCR</li>
+                  <li>Single source of truth with documented metrics</li>
+                </ul>
               </Card>
               <Card>
-                <h3 className="font-medium">Tableau — Superstore Dashboard</h3>
-                <p className="text-sm mt-2">Dynamic Tableau dashboard for visualizing Superstore sales trends and KPIs.</p>
-                <a href={PROFILE.tableauOpenUrl} target="_blank" rel="noopener" className="inline-block mt-3 text-sm underline">View on Tableau Public</a>
+                <h3 className="font-medium">Artifacts</h3>
+                <ul className="mt-2 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                  <li>Data dictionary & KPI glossary</li>
+                  <li>Refresh runbook (permissions, gateway, schedule)</li>
+                  <li>Executive summary (1-pager) for weekly ops review</li>
+                </ul>
               </Card>
             </div>
           </Section>
 
-          {/* Tableau Embed */}
-          <Section id="tableau" title="Tableau Showcase">
-            <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden border">
-              <iframe title="Tableau Visualization" src={PROFILE.tableauViewsUrl} className="w-full h-full" allowFullScreen />
-            </div>
-          </Section>
-
-          {/* Contact */}
-          <Section id="contact" title="Contact & Links">
-            <Card>
-              <h3 className="font-medium">Get in touch</h3>
-              <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                <a href={"mailto:" + PROFILE.email} className="rounded-xl border px-4 py-2 hover:bg-gray-50">Email</a>
-                <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="text-sm underline">LinkedIn</a>
-                <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">GitHub</a>
-                <a href={PROFILE.links.resume} target="_blank" rel="noopener" className="text-sm underline">Download Resume</a>
-              </div>
-            </Card>
-          </Section>
-
-          {/* Footer */}
-          <footer className="pb-12 text-center text-xs text-gray-500">
-            © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
-          </footer>
-        </div>
-      );
-    }
-
-    ReactDOM.createRoot(document.getElementById("root")).render(<Portfolio />);
-  </script>
-</body>
-</html>
+          {/* Python Segmentation (for the Notebook CTA) */}
+          <Section id="python-segmentation" title="Python Project — Customer Segmentation (RFM + K-Means)">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <h3 className="font-medium">Overview
