@@ -38,10 +38,16 @@
         kaggle: "https://kaggle.com/",
         resume: "https://docs.google.com/document/d/1PpzxX2Z-5w8t33jj78QQGxUtxMwpfM4D/edit?usp=sharing&ouid=109009845564934818562&rtpof=true&sd=true"
       },
+      // Viz #1 — Superstore (existing)
       tableauViewsUrl:
         "https://public.tableau.com/views/Superstore_Dashboard_Nana/SuperstoreDashboard?:showVizHome=no&:embed=y&:tabs=no&:toolbar=yes",
       tableauOpenUrl:
-        "https://public.tableau.com/views/Superstore_Dashboard_Nana/SuperstoreDashboard?:showVizHome=no"
+        "https://public.tableau.com/views/Superstore_Dashboard_Nana/SuperstoreDashboard?:showVizHome=no",
+      // Viz #2 — Healthcare (new)
+      healthcareViewsUrl:
+        "https://public.tableau.com/shared/SSYH697DC?:showVizHome=no&:embed=true&:toolbar=yes&:tabs=no",
+      healthcareOpenUrl:
+        "https://public.tableau.com/shared/SSYH697DC?:showVizHome=no"
     };
 
     const Badge = ({ children }) => (
@@ -67,9 +73,9 @@
       </section>
     );
 
-    const TableauEmbed = ({ src }) => (
+    const TableauEmbed = ({ src, title = "Tableau Visualization" }) => (
       <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden border">
-        <iframe title="Tableau Visualization" src={src} className="w-full h-full" allowFullScreen />
+        <iframe title={title} src={src} className="w-full h-full" allowFullScreen />
       </div>
     );
 
@@ -174,7 +180,7 @@
                   <div className="mt-2 grid grid-cols-2 gap-3 text-sm">
                     <div className="text-gray-500">Name</div><div>{PROFILE.name}</div>
                     <div className="text-gray-500">Location</div><div>{PROFILE.location}</div>
-                    <div className="text-gray-500">Email</div><div><a href={"mailto:" + PROFILE.email} className="underline">{PROFILE.email}</a></div>
+                    <div className="text-gray-500">Email</div><div><a href={'mailto:' + PROFILE.email} className="underline">{PROFILE.email}</a></div>
                     <div className="text-gray-500">Phone</div><div>{PROFILE.phone}</div>
                   </div>
                 </Card>
@@ -232,13 +238,27 @@
             </div>
           </Section>
 
-          {/* Tableau */}
+          {/* Tableau Showcase (two embeds) */}
           <Section id="tableau" title="Tableau Showcase">
-            <p className="text-gray-600 mb-4">Embedded via Tableau Public. If it’s blocked, use the fallback link below.</p>
-            <TableauEmbed src={PROFILE.tableauViewsUrl} />
-            <p className="mt-3 text-xs text-gray-500">
-              Fallback: <a className="underline" href={PROFILE.tableauOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.
-            </p>
+            <p className="text-gray-600 mb-4">Embedded via Tableau Public. If it’s blocked, use the fallback links below.</p>
+
+            {/* Viz #1: Superstore */}
+            <div className="mb-10">
+              <h3 className="text-lg font-semibold mb-2">Nana's Superstore Provisioning Dashboard</h3>
+              <TableauEmbed src={PROFILE.tableauViewsUrl} title="Tableau — Superstore Dashboard" />
+              <p className="mt-3 text-xs text-gray-500">
+                Fallback: <a className="underline" href={PROFILE.tableauOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.
+              </p>
+            </div>
+
+            {/* Viz #2: Healthcare */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Nana's Healthcare Patient Managment Dashboard</h3>
+              <TableauEmbed src={PROFILE.healthcareViewsUrl} title="Tableau — Healthcare Dashboard" />
+              <p className="mt-3 text-xs text-gray-500">
+                Fallback: <a className="underline" href={PROFILE.healthcareOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.
+              </p>
+            </div>
           </Section>
 
           {/* Case Study (for the 'Case Study' CTA) */}
@@ -345,7 +365,7 @@ ORDER BY 1,2;`}</pre>
                   I’m open to remote or hybrid roles focused on reporting, dashboarding, and process improvement.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                  <a href={"mailto:" + PROFILE.email} className="rounded-xl border px-4 py-2 hover:bg-gray-50">Email</a>
+                  <a href={'mailto:' + PROFILE.email} className="rounded-xl border px-4 py-2 hover:bg-gray-50">Email</a>
                   <a href={PROFILE.links.linkedin} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">LinkedIn</a>
                   <a href={PROFILE.links.github} target="_blank" rel="noopener" className="rounded-xl border px-4 py-2 hover:bg-gray-50">GitHub</a>
                 </div>
@@ -354,7 +374,7 @@ ORDER BY 1,2;`}</pre>
                 <h3 className="font-medium">How this portfolio is built</h3>
                 <ul className="mt-2 space-y-2 text-sm text-gray-700 list-disc list-inside">
                   <li>Single-file HTML with React + Tailwind via CDNs</li>
-                  <li>Drop-in Tableau embed via share link</li>
+                  <li>Drop-in Tableau embeds via Tableau Public</li>
                   <li>Easy to host free on GitHub Pages, Netlify, or Vercel</li>
                 </ul>
               </Card>
