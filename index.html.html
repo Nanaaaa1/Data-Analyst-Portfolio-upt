@@ -47,7 +47,17 @@
       healthcareViewsUrl:
         "https://public.tableau.com/shared/SSYH697DC?:showVizHome=no&:embed=true&:toolbar=yes&:tabs=no",
       healthcareOpenUrl:
-        "https://public.tableau.com/shared/SSYH697DC?:showVizHome=no"
+        "https://public.tableau.com/shared/SSYH697DC?:showVizHome=no",
+      // Viz #3 — Freight Demand & Supply (new)
+      freightViewsUrl:
+        "https://public.tableau.com/views/FreightDemandandSupply/FreightDemandandSupply?:showVizHome=no&:embed=true&:toolbar=yes&:tabs=no",
+      freightOpenUrl:
+        "https://public.tableau.com/views/FreightDemandandSupply/FreightDemandandSupply?:showVizHome=no",
+      // Viz #4 — Energy in America (new)
+      energyViewsUrl:
+        "https://public.tableau.com/views/EnergyinAmerica/Energy?:showVizHome=no&:embed=true&:toolbar=yes&:tabs=no",
+      energyOpenUrl:
+        "https://public.tableau.com/views/EnergyinAmerica/Energy?:showVizHome=no"
     };
 
     const Badge = ({ children }) => (
@@ -244,7 +254,8 @@
 
             {/* Viz #1: Superstore */}
             <div className="mb-10">
-              <h3 className="text-lg font-semibold mb-2">Nana's Superstore Provisioning Dashboard</h3>
+              <h3 className="text-lg font-semibold mb-2">Superstore Dashboard</h3>
+              <p className="text-sm text-gray-600"><span className="font-medium">Description:</span> Executive KPI tiles for Sales, Profit and Orders with YoY/QoQ deltas; map and ranked bars to surface top- and bottom-performing states and sub-categories; parameter-driven filters for date range, category and region; drill‑through from category → product to inspect margin drivers; hover tooltips expose order‑level detail and profit ratio.</p>
               <TableauEmbed src={PROFILE.tableauViewsUrl} title="Tableau — Superstore Dashboard" />
               <p className="mt-3 text-xs text-gray-500">
                 Fallback: <a className="underline" href={PROFILE.tableauOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.
@@ -253,10 +264,31 @@
 
             {/* Viz #2: Healthcare */}
             <div>
-              <h3 className="text-lg font-semibold mb-2">Nana's Healthcare Patient Managment Dashboard</h3>
+              <h3 className="text-lg font-semibold mb-2">Healthcare Dashboard</h3>
+              <p className="text-sm text-gray-600"><span className="font-medium">Description:</span> Monitors patient flow end‑to‑end—admissions, discharges, bed occupancy and ED wait times—alongside outcomes (readmissions, adverse event proxies) and resource utilization (ICU beds, staffing). Facility, department and date slicers enable comparisons; highlight tables flag capacity strains, while tooltips reveal case‑mix and length‑of‑stay distributions for context.</p>
               <TableauEmbed src={PROFILE.healthcareViewsUrl} title="Tableau — Healthcare Dashboard" />
               <p className="mt-3 text-xs text-gray-500">
                 Fallback: <a className="underline" href={PROFILE.healthcareOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.
+              </p>
+            </div>
+
+            {/* Viz #3: Freight Demand & Supply */}
+            <div className="mt-10">
+              <h3 className="text-lg font-semibold mb-2">Freight Demand and Supply Dashboard</h3>
+              <p className="text-sm text-gray-600"><span className="font-medium">Description:</span> Tracks demand versus available capacity across lanes and modes (truck, rail, air, ocean) with seasonal patterns and lead‑time trends. Lane scorecards flag imbalances where loads exceed capacity; corridor maps and small multiples highlight congestion and volatility; optional rate index overlay correlates price movements with utilization.</p>
+              <TableauEmbed src={PROFILE.freightViewsUrl} title="Tableau — Freight Demand and Supply" />
+              <p className="mt-3 text-xs text-gray-500">
+                Fallback: <a className="underline" href={PROFILE.freightOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.
+              </p>
+            </div>
+
+            {/* Viz #4: Energy in America */}
+            <div className="mt-10">
+              <h3 className="text-lg font-semibold mb-2">Energy in America Dashboard</h3>
+              <p className="text-sm text-gray-600"><span className="font-medium">Description:</span> Explores U.S. energy production and consumption by source (coal, natural gas, nuclear, hydro, wind, solar) and by region/sector. Time controls compare baselines vs. recent periods; stacked/line visuals show shifts in generation mix and estimated CO₂ intensity; hover details provide exact TWh and share %, with filters for state and sector.</p>
+              <TableauEmbed src={PROFILE.energyViewsUrl} title="Tableau — Energy in America" />
+              <p className="mt-3 text-xs text-gray-500">
+                Fallback: <a className="underline" href={PROFILE.energyOpenUrl} target="_blank" rel="noopener">Open on Tableau Public</a>.
               </p>
             </div>
           </Section>
