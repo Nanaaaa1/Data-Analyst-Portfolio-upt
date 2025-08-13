@@ -29,7 +29,7 @@
       title: "Data Analyst Portfolio and Insights",
       location: "Main St, TX 77002",
       summary:
-        "Data analyst with 5+ years' experience delivering impactful analytics in cybersecurity, energy, retail, and financial services. Skilled in Python, SQL, Tableau, Power BI, Excel, and Snowflake I love turning messy data into decision-ready dashboards and insights.",
+        "Data analyst with 5+ years' experience delivering impactful analytics in cybersecurity, energy, retail, and financial services. Skilled in Python, SQL, Tableau, Power BI, Excel, and Snowflake — turning messy data into decision-ready dashboards and insights.",
       email: "nanaaduabankro@gmail.com",
       phone: "(908) 425-2060",
       links: {
@@ -83,17 +83,23 @@
       </section>
     );
 
-    const TableauEmbed = ({ src, title = "Tableau Visualization" }) => (
-      <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden border relative">
-        {/* Crop bottom ~36px to hide the built-in 'View on Tableau Public' strip */}
-        <iframe
-          title={title}
-          src={src}
-          style={{ position: 'absolute', top: '-36px', left: 0, width: '100%', height: 'calc(100% + 36px)', border: 0 }}
-          allowFullScreen
-        />
-      </div>
-    );
+    const CROP_PX = 48; // pixels to crop off the bottom to hide the Tableau Public strip
+const TableauEmbed = ({ src, title = "Tableau Visualization" }) => (
+  <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden border relative">
+    <iframe
+      title={title}
+      src={src}
+      style={{ position: 'absolute', top: `-${CROP_PX}px`, left: 0, width: '100%', height: `calc(100% + ${CROP_PX}px)`, border: 0 }}
+      allowFullScreen
+    />
+    {/* Mask the bottom area so the link is invisible & unclickable */}
+    <div
+      className="absolute inset-x-0 bottom-0"
+      style={{ height: `${CROP_PX}px`, background: 'white', pointerEvents: 'auto' }}
+      aria-hidden="true"
+    />
+  </div>
+);
 
     // Rich project cards with tags + bullet highlights
     const PROJECTS = [
@@ -114,7 +120,7 @@
         title: "Customer Segmentation (Python)",
         period: "2025",
         tagline:
-          "RFM scoring + k-means clustering to identify high value segments; cohort profiles and recommended actions.",
+          "RFM scoring + k-means clustering to identify high-value segments; cohort profiles and recommended actions.",
         stack: ["Python", "pandas", "scikit-learn", "matplotlib"],
         highlights: [
           "Engineered RFM features and standardized inputs",
@@ -262,13 +268,13 @@
             <div className="mb-10">
               <h3 className="text-lg font-semibold mb-2">Superstore Dashboard</h3>
               <p className="text-sm text-gray-600"><span className="font-medium">Description:</span> Executive KPI tiles for Sales, Profit and Orders with YoY/QoQ deltas; map and ranked bars to surface top- and bottom-performing states and sub-categories; parameter-driven filters for date range, category and region; drill‑through from category → product to inspect margin drivers; hover tooltips expose order‑level detail and profit ratio.</p>
-              <TableauEmbed src={PROFILE.tableauViewsUrl}title="Tableau — Superstore Dashboard" />
+              <TableauEmbed src={PROFILE.tableauViewsUrl} title="Tableau — Superstore Dashboard" />
             </div>
 
             {/* Viz #2: Healthcare */}
             <div>
               <h3 className="text-lg font-semibold mb-2">Healthcare Dashboard</h3>
-              <p className="text-sm text-gray-600"><span className="font-medium">Description:</span> Monitors patient flow end to end admissions, discharges, bed occupancy and ED wait times alongside outcomes (readmissions, adverse event proxies) and resource utilization (ICU beds, staffing). Facility, department and date slicers enable comparisons; highlight tables flag capacity strains, while tooltips reveal case‑mix and length of stay distributions for context.</p>
+              <p className="text-sm text-gray-600"><span className="font-medium">Description:</span> Monitors patient flow end‑to‑end—admissions, discharges, bed occupancy and ED wait times—alongside outcomes (readmissions, adverse event proxies) and resource utilization (ICU beds, staffing). Facility, department and date slicers enable comparisons; highlight tables flag capacity strains, while tooltips reveal case‑mix and length‑of‑stay distributions for context.</p>
               <TableauEmbed src={PROFILE.healthcareViewsUrl} title="Tableau — Healthcare Dashboard" />
             </div>
 
